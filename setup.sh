@@ -2,9 +2,14 @@
 
 echo "Starting setup process..."
 
-# Step 1: Install PHP dependencies using Sail
+# Step 1: Install PHP dependencies using Composer
 echo "Installing PHP dependencies..."
-./vendor/bin/sail composer install
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
 
 # Step 2: Install Node.js dependencies using npm
 echo "Installing Node.js dependencies..."
