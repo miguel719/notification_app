@@ -11,7 +11,7 @@ import axios from "axios";
 
 const SendMessage = () => {
     const [message, setMessage] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("1");
 
     const handleSubmit = async (e) => {
         e.preventDefault();

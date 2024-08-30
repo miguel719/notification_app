@@ -1,32 +1,42 @@
-./vendor/bin/sail artisan migrate
-./vendor/bin/sail artisan db:seed
+# Notification System Project
 
-./vendor/bin/sail artisan route:list
-php artisan route:clear
+This project is a notification system built with Laravel and Laravel Sail, allowing users to receive messages based on their subscriptions to different categories through various channels (SMS, Email, Push Notification).
 
-./vendor/bin/sail up -d
+![Notification App Architecture](NotificationApp.png)
 
-./vendor/bin/sail artisan cache:clear
+## Features
 
-./vendor/bin/sail artisan cache:table
+-   **Send Notifications**: Users can receive notifications based on their category subscriptions through SMS, Email, or Push Notification.
+-   **View Logs**: A comprehensive log of all messages sent to users is available, filterable by category, email, phone, status, and channel.
 
-./vendor/bin/sail artisan config:clear
-./vendor/bin/sail artisan cache:clear
-./vendor/bin/sail artisan route:clear
+## Requirements
 
-./vendor/bin/sail artisan migrate:status
+-   Docker
+-   Docker Compose
 
-// REACT
+## Setup Instructions
 
-./vendor/bin/sail npm install react react-dom --save
-./vendor/bin/sail npm install --save-dev vite @vitejs/plugin-react
+1. **Clone the Repository**
 
-==
+    ```bash
+    git clone https://github.com/miguel719/notification_app
+    cd notification_app
+    ```
 
-./vendor/bin/sail up -d
-cp .env.example .env
-./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate
-./vendor/bin/sail artisan db:seed
+2. Run the Setup Script
 
-./vendor/bin/sail artisan test
+This script will install all dependencies, run migrations, seed the database, and build front-end assets:
+
+```bash
+./setup.sh
+```
+
+After the setup is complete you can navigate to http://localhost
+
+3. Running Tests
+
+This script will install all dependencies, run migrations, seed the database, and build front-end assets:
+
+```bash
+./test.sh
+```
