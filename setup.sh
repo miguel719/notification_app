@@ -11,23 +11,28 @@ docker run --rm \
     laravelsail/php82-composer:latest \
     composer install --ignore-platform-reqs
 
-# Step 2: Install Node.js dependencies using npm
+# Step 2: Start Sail
+echo "Starting Sail..."
+./vendor/bin/sail up -d
+
+# Wait for Sail to be fully up and running
+sleep 10
+
+# Step 3: Install Node.js dependencies using npm
 echo "Installing Node.js dependencies..."
 ./vendor/bin/sail npm install
 
-# Step 3: Copy .env.example to .env and generate the application key
+# Step 4: Copy .env.example to .env and generate the application key
 echo "Setting up environment file and generating application key..."
 cp .env.example .env
 ./vendor/bin/sail artisan key:generate
 
-# Step 4: Run migrations and seed the database
+# Step 5: Run migrations and seed the database
 echo "Running migrations and seeding the database..."
 ./vendor/bin/sail artisan migrate --seed
 
-# Step 5: Build front-end assets
+# Step 6: Build front-end assets
 echo "Building front-end assets..."
 ./vendor/bin/sail npm run build
-
-./vendor/bin/sail up -d
 
 echo "Setup process completed successfully!"
