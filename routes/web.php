@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MessageController;
+use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
-    return 'Hello, World!';
+    return view('welcome');
 });
